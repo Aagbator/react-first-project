@@ -1,4 +1,5 @@
 import React from 'react';
+import Radium from 'radium';
 
 var reviewStyle = {
     color:'red',
@@ -6,6 +7,8 @@ var reviewStyle = {
     border:'1px solid #fff',
     padding:'2px'
 }
+
+
 
 var item = (props) => {
     return(
@@ -22,5 +25,5 @@ var item = (props) => {
 }
 
 
-export default item;
+export default Radium(item);
 

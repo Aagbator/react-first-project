@@ -3,6 +3,7 @@ import Item from './Item/item';
 import InputField from './InputField/InputField';
 import ValidationComponent from './ValidationComponent/ValidationComponent';
 import CharComponent from './charComponent/charComponent';
+import Radium from 'radium';
 import './App.css';
 import './Item/item.css';
 import foodItems from './data';
@@ -75,10 +76,21 @@ class App extends Component {
 
     toggleItems = () => {
         var status = this.state.display;
-    this.setState({display:!status})
-}
+        this.setState({display:!status});
+
+    }
 
   render() {
+
+
+        const buttonStyle={
+            border:'1px solid #fff',
+            padding:'5px',
+            color:'#fff',
+            fontWeight:'700',
+            backgroundColor:'#3b8806',
+            marginBottom: '10px'
+        }
 
       // var foodlist = foodItems.map(function(ele, index) {
       //     return <Item click={this.updateCost}  key={index} id={ele.id} title={ele.title} price={ele.price}/>;
@@ -89,6 +101,15 @@ class App extends Component {
       });
 
       var items = null;
+
+      var Style = {
+          fontWeight:'700',
+          backgroundColor:'yellow',
+          ':hover':{
+              backgroundColor:'pink',
+              padding:'5px 40px'
+          }
+      };
 
       if(this.state.display){
           items = (
@@ -106,6 +127,12 @@ class App extends Component {
                   })}
               </div>
           );
+          buttonStyle.backgroundColor = '#a10505';
+          Style[':hover'] = {
+              backgroundColor:'orange',
+                  padding:'5px 20px',
+                border:'2px solid pink'
+          }
       }
       else{
           items = null;
@@ -113,21 +140,22 @@ class App extends Component {
 
 
     return (
-      <div className="App">
-          <div className="display"> $ <span>{this.state.totalcost}</span></div>
-          <button onClick={this.toggleItems}>show / hide</button>
-          { items }
+          <div className="App">
+              <div className="display"> $ <span>{this.state.totalcost}</span></div>
+              <button  style={buttonStyle}  onClick={this.toggleItems}>show / hide</button>
+              <button style={Style}>hello world !</button>
+              { items }
 
-          <div>
-              <InputField textHandler={this.textHandler} currentValue={this.state.text} />
-              <ValidationComponent textLength={this.state.textLength}/>
               <div>
-                  {elementList}
+                  <InputField textHandler={this.textHandler} currentValue={this.state.text} />
+                  <ValidationComponent textLength={this.state.text.length}/>
+                  <div>
+                      {elementList}
+                  </div>
               </div>
           </div>
-      </div>
     );
   }
 }
 
-export default App;
+export default Radium(App);

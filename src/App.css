@@ -14,3 +14,15 @@
   width:40%;
   margin-bottom:20px;
 }
+
+.red{
+  color:red;
+}
+
+.green{
+  color:green;
+}
+
+.bold{
+  font-weight:700;
+}
